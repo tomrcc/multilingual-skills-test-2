@@ -1,0 +1,70 @@
+---
+// Visitor-facing language switcher.
+//
+// URL mode: default language at root (see src/lib/i18n.ts + .cloudcannon/postbuild).
+// Every <a> carries `data-rosey-ignore` so Rosey does not rewrite/double-prefix
+// these locale URLs on generated pages. Active-state and editor-hiding are
+// handled by the inline script below.
+import { locales, localeCodes, defaultLocale } from "../../lib/i18n";
+
+// Default language is served at root; its picker link points at the bare path.
+const defaultLanguageAtRoot = true;
+
+const pathname = Astro.url.pathname;
+const segments = pathname.split("/").filter(Boolean);
+const isLocalePath =
+  localeCodes.includes(segments[0] as any) || segments[0] === defaultLocale;
+const basePath = isLocalePath
+  ? "/" + segments.slice(1).join("/") + (segments.slice(1).length ? "/" : "")
+  : pathname;
+
+function buildPath(base: string, locale: string) {
+  if (locale === defaultLocale && defaultLanguageAtRoot) return base || "/";
+  return `/${locale}${base.startsWith("/") ? base : `/${base}`}`;
+}
+
+const options = [
+  { code: defaultLocale, label: "EN" },
+  ...localeCodes.map((code) => ({ code, label: code.toUpperCase() })),
+];
+---
+
+<nav aria-label="Language" class="flex items-center gap-1 text-sm font-medium">
+  {
+    options.map(({ code, label }, i) => (
+      <>
+        {i > 0 && <span class="text-gray-300" aria-hidden="true">/</span>}
+        <a
+          href={buildPath(basePath, code)}
+          data-rosey-ignore
+          hreflang={code}
+          title={code === defaultLocale ? "English" : locales[code as keyof typeof locales].label}
+          class="px-1 text-gray-500 hover:text-gray-900 transition-colors [&.active]:text-blue-600 [&.active]:font-semibold"
+        >
+          {label}
+        </a>
+      </>
+    ))
+  }
+</nav>
+
+<script>
+  // (RCC layer) Hide the nav picker inside the Visual Editor — the RCC injects
+  // its own floating locale switcher there. Harmless off CloudCannon:
+  // `inEditorMode` is only ever set by CloudCannon.
+  if ((window as any).inEditorMode) {
+    document
+      .querySelectorAll("nav[aria-label='Language']")
+      .forEach((nav) => ((nav as HTMLElement).style.display = "none"));
+  } else {
+    // Build-time HTML always reflects the default-language perspective, so fix
+    // the active-state highlight on the client for Rosey-generated pages.
+    document
+      .querySelectorAll("nav[aria-label='Language'] a")
+      .forEach((link) => {
+        const match =
+          (link as HTMLAnchorElement).pathname === window.location.pathname;
+        link.classList.toggle("active", match);
+      });
+  }
+</script>

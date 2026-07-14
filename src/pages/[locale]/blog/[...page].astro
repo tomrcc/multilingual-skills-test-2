@@ -1,32 +1,46 @@
 ---
 import type { Page } from "astro";
-import BlogList from "../../components/blog/list.astro";
-import BlogPagination from "../../components/blog/pagination";
-import Layout from "../../layouts/Paginated.astro";
+import BlogList from "../../../components/blog/list.astro";
+import BlogPagination from "../../../components/blog/pagination";
+import Layout from "../../../layouts/Paginated.astro";
 import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import {
+  localeCodes,
+  blogCollectionName,
+  localePrefix,
+  dateLocaleFor,
+} from "../../../lib/i18n";
 
 type Props = {
   page: Page<CollectionEntry<"blog">>;
+  locale: string;
 };
 
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
-  const posts = await getCollection("blog");
   const page = await getEntry("pages", "blog");
-  posts.sort((a, b) => {
-    const aDate = new Date(a.data.post_hero.date);
-    const bDate = new Date(b.data.post_hero.date);
-    return bDate - aDate;
-  });
-  if (!page) return;
-  return paginate(posts, {
-    pageSize: "page_size" in page.data ? page.data.page_size : 6,
-  });
+  const pageSize = page && "page_size" in page.data ? page.data.page_size : 6;
+
+  const paths = [];
+  for (const locale of localeCodes) {
+    const posts = await getCollection(blogCollectionName(locale) as any);
+    posts.sort((a, b) => {
+      const aDate = new Date(a.data.post_hero.date);
+      const bDate = new Date(b.data.post_hero.date);
+      return bDate - aDate;
+    });
+    paths.push(...paginate(posts, { params: { locale }, pageSize }));
+  }
+  return paths;
 }
 
+const { locale } = Astro.params;
 const page = await getEntry("pages", "blog");
 const frontmatter = page?.data;
 const pagination = Astro.props.page;
 const { data: posts } = pagination;
+
+const prefix = localePrefix(locale);
+const dateLocale = dateLocaleFor(locale);
 ---
 
 <Layout frontmatter={frontmatter} roseyRoot="blog">
@@ -50,8 +64,8 @@ const { data: posts } = pagination;
       </script>
     </div>
     <section>
-      <BlogList posts={posts} />
-      <BlogPagination pagination={pagination} />
+      <BlogList posts={posts} localePrefix={prefix} dateLocale={dateLocale} />
+      <BlogPagination pagination={pagination} basePath={`${prefix}/blog`} />
     </section>
   </div>
 </Layout>

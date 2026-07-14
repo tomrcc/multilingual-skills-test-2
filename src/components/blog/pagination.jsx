@@ -1,4 +1,4 @@
-export default function BlogPagination({ pagination }) {
+export default function BlogPagination({ pagination, basePath = "/blog" }) {
   const {
     currentPage,
     lastPage,
@@ -19,7 +19,7 @@ export default function BlogPagination({ pagination }) {
               ? "bg-blue-600 text-white"
               : "text-gray-700 hover:text-blue-600"
           }`}
-          href={i === 1 ? "/blog" : `/blog/${i}`}
+          href={i === 1 ? basePath : `${basePath}/${i}`}
         >
           {i}
         </a>

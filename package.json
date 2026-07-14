@@ -23,6 +23,8 @@
     "markdown-it": "^13.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rosey": "^2.3.10",
+    "rosey-cloudcannon-connector": "github:tomrcc/rcc-v2",
     "sharp": "^0.33.5",
     "tailwindcss": "^4.0.0"
   }

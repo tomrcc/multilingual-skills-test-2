@@ -9,18 +9,22 @@ import { footer } from "../../../data/navigation.json";
         <img class="w-48" src={footer.logo} alt={footer.logo_alt_text} />
       </a>
 
-      <ul class="flex gap-6 items-center justify-center">
+      <ul class="flex gap-6 items-center justify-center" data-rosey-ns="footer">
         {footer.links.map((link) => (
           <li>
-            <a class="hover:text-gray-300 transition-colors" href={link.link}>
+            <a
+              class="hover:text-gray-300 transition-colors"
+              href={link.link}
+              data-rosey={link.link.startsWith("http") ? undefined : link.text.toLowerCase().replace(/\s+/g, "-")}
+            >
               {link.text}
             </a>
           </li>
         ))}
       </ul>
 
-      <div class="text-center sm:text-end text-sm text-gray-400">
-        &copy; {new Date().getFullYear()} {footer.copyright}
+      <div class="text-center sm:text-end text-sm text-gray-400" data-rosey-ns="footer">
+        &copy; {new Date().getFullYear()} <span data-rosey="copyright">{footer.copyright}</span>
       </div>
     </div>
   </div>

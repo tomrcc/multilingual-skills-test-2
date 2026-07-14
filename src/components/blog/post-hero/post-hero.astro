@@ -11,22 +11,27 @@ interface Props {
   image_alt: string;
   tags: Array<string>;
   bodyContent: string;
+  localePrefix?: string;
+  dateLocale?: string;
 }
 
-const { heading, date, author, image, image_alt, tags, bodyContent } =
-  Astro.props;
+const {
+  heading,
+  date,
+  author,
+  image,
+  image_alt,
+  tags,
+  bodyContent,
+  localePrefix = "",
+  dateLocale,
+} = Astro.props;
 
 const wordCount = bodyContent?.split(" ")?.length ?? 0;
 const dateObj = new Date(date);
 const authorWithFallback = author || site.default_author;
 
-let readingTime = "Less than 1 minute";
 const readingTimeInMins = Math.floor(wordCount / 183);
-if (readingTimeInMins === 1) {
-  readingTime = "1 minute";
-} else if (readingTimeInMins > 1) {
-  readingTime = `${readingTimeInMins} minutes`;
-}
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif,svg,avif,webp}",
@@ -63,7 +68,7 @@ const imageSrc = images[image]?.default || image;
       <div class="flex flex-wrap gap-2 my-2">
         {tags.map((tag: string) => (
           <a
-            href={`/tags/${tag}/`}
+            href={`${localePrefix}/tags/${tag}/`}
             class="bg-gray-100 text-blue-600 text-xs font-medium px-3 py-1 rounded-md no-underline">
             {tag.charAt(0).toUpperCase() + tag.slice(1)}
           </a>
@@ -71,12 +76,12 @@ const imageSrc = images[image]?.default || image;
       </div>
     )
   }
-  <div class="flex flex-col gap-1 py-4 text-sm text-gray-500">
+  <div class="flex flex-col gap-1 py-4 text-sm text-gray-500" data-rosey-root="blog">
     <p data-editable="text" data-prop="author">{authorWithFallback}</p>
     {
       dateObj && (
         <p>
-          {dateObj.toLocaleDateString(undefined, {
+          {dateObj.toLocaleDateString(dateLocale, {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -84,6 +89,15 @@ const imageSrc = images[image]?.default || image;
         </p>
       )
     }
-    <p>{wordCount} words &middot; {readingTime}</p>
+    <p>
+      {wordCount} <span data-rosey="words">words</span> &middot;{" "}
+      {readingTimeInMins < 1 ? (
+        <span data-rosey="reading_time_under_minute">Less than a minute</span>
+      ) : (
+        <span>
+          {readingTimeInMins} <span data-rosey="reading_time_unit">min read</span>
+        </span>
+      )}
+    </p>
   </div>
 </div>

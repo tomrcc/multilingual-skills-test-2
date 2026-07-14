@@ -1,0 +1,61 @@
+---
+import BlogList from "../../../../components/blog/list.astro";
+import BlogPagination from "../../../../components/blog/pagination";
+import Layout from "../../../../layouts/Layout.astro";
+import { getCollection, getEntry } from "astro:content";
+import {
+  localeCodes,
+  blogCollectionName,
+  localePrefix,
+  dateLocaleFor,
+} from "../../../../lib/i18n";
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const page = await getEntry("pages", "blog");
+  if (!page) return [];
+  const pageSize = "page_size" in page.data ? page.data.page_size : 6;
+
+  const paths = [];
+  for (const locale of localeCodes) {
+    const posts = await getCollection(blogCollectionName(locale) as any);
+    const tags: Record<string, boolean> = {};
+    for (const post of posts) {
+      for (const tag of post.data.post_hero.tags) {
+        tags[tag] = true;
+      }
+    }
+    for (const tag of Object.keys(tags)) {
+      const filteredPosts = posts.filter(({ data }) =>
+        data.post_hero.tags.includes(tag),
+      );
+      paths.push(...paginate(filteredPosts, { params: { locale, tag }, pageSize }));
+    }
+  }
+  return paths;
+}
+
+const { locale, tag = "" } = Astro.params;
+const page = (await getEntry("pages", "blog"))?.data;
+if (!page) {
+  throw new Error("Failed to get blog page data");
+}
+
+const title = tag[0].toUpperCase() + tag.slice(1);
+const pagination = Astro.props.page;
+const filteredPosts = pagination.data;
+
+const prefix = localePrefix(locale);
+const dateLocale = dateLocaleFor(locale);
+---
+
+<Layout title={title} seo={page.seo} roseyRoot="blog">
+  <div class="mx-auto max-w-6xl px-8 py-16">
+    <h1 class="text-3xl md:text-4xl font-bold text-center mb-8">
+      {title}
+    </h1>
+    <section>
+      <BlogList posts={filteredPosts} localePrefix={prefix} dateLocale={dateLocale} />
+      <BlogPagination pagination={pagination} basePath={`${prefix}/tags/${tag}`} />
+    </section>
+  </div>
+</Layout>

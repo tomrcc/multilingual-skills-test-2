@@ -6,10 +6,12 @@ interface Props {
   content: string;
   dataProp?: string;
   dataType?: string;
+  dataRosey?: string | false;
 }
 
-const { content, dataProp, dataType } = Astro.props;
+const { content, dataProp, dataType, dataRosey } = Astro.props;
 const markdownContent = content ? md.render(content) : "";
+const roseyAttr = dataRosey ? { "data-rosey": dataRosey } : {};
 ---
 
 {
@@ -19,9 +21,10 @@ const markdownContent = content ? md.render(content) : "";
       data-editable="text"
       data-prop={dataProp}
       data-type={dataType}
+      {...roseyAttr}
       set:html={markdownContent}
     />
   ) : (
-    <div class="prose" set:html={markdownContent} />
+    <div class="prose" {...roseyAttr} set:html={markdownContent} />
   )
 }

@@ -1,0 +1,122 @@
+{
+  "404:back_home": {
+    "original": "Back home",
+    "value": "Zurück zur Startseite",
+    "_base_original": "Back home"
+  },
+  "404:title": {
+    "original": "Page not found!",
+    "value": "Seite nicht gefunden!",
+    "_base_original": "Page not found!"
+  },
+  "about:contact_details": {
+    "original": " <p>\nHave a question or want to work together? Reach out at\n<a href=\"mailto:hello@example.com\">hello@example.com</a>\nor find us on <a href=\"https://github.com\">GitHub</a>.\n</p> ",
+    "value": " <p>\nHaben Sie eine Frage oder möchten Sie zusammenarbeiten? Schreiben Sie uns an\n<a href=\"mailto:hello@example.com\">hello@example.com</a>\noder finden Sie uns auf <a href=\"https://github.com\">GitHub</a>.\n</p> ",
+    "_base_original": " <p>\nHave a question or want to work together? Reach out at\n<a href=\"mailto:hello@example.com\">hello@example.com</a>\nor find us on <a href=\"https://github.com\">GitHub</a>.\n</p> "
+  },
+  "about:contact_heading": {
+    "original": "\nGet in Touch\n",
+    "value": "\nKontakt aufnehmen\n",
+    "_base_original": "\nGet in Touch\n"
+  },
+  "about:description": {
+    "original": " <p>\nWe're a small team passionate about building great websites. This page\n          is a standalone Astro component edited with\n<strong>source editables</strong> — the content you see here lives directly\n          in the template and is edited visually through CloudCannon.\n</p> ",
+    "value": " <p>\nWir sind ein kleines Team, das mit Leidenschaft großartige Websites erstellt. Diese Seite\n          ist eine eigenständige Astro-Komponente, die mit\n<strong>Source-Editables</strong> bearbeitet wird — die Inhalte, die Sie hier sehen, befinden sich direkt\n          in der Vorlage und werden visuell über CloudCannon bearbeitet.\n</p> ",
+    "_base_original": " <p>\nWe're a small team passionate about building great websites. This page\n          is a standalone Astro component edited with\n<strong>source editables</strong> — the content you see here lives directly\n          in the template and is edited visually through CloudCannon.\n</p> "
+  },
+  "about:heading": {
+    "original": "\nAbout Us\n",
+    "value": "\nÜber uns\n",
+    "_base_original": "\nAbout Us\n"
+  },
+  "blog:reading_time_under_minute": {
+    "original": "Less than a minute",
+    "value": "Weniger als eine Minute",
+    "_base_original": "Less than a minute"
+  },
+  "blog:reading_time_unit": {
+    "original": "min read",
+    "value": "Min. Lesezeit",
+    "_base_original": "min read"
+  },
+  "blog:recent_posts": {
+    "original": "Recent Posts",
+    "value": "Neueste Beiträge",
+    "_base_original": "Recent Posts"
+  },
+  "blog:title": {
+    "original": " Blog ",
+    "value": " Blog ",
+    "_base_original": " Blog "
+  },
+  "blog:words": {
+    "original": "words",
+    "value": "Wörter",
+    "_base_original": "words"
+  },
+  "footer:blog": {
+    "original": " Blog ",
+    "value": " Blog ",
+    "_base_original": " Blog "
+  },
+  "footer:copyright": {
+    "original": "MyCompany. All rights reserved.",
+    "value": "MyCompany. Alle Rechte vorbehalten.",
+    "_base_original": "MyCompany. All rights reserved."
+  },
+  "footer:rss-feed": {
+    "original": " RSS Feed ",
+    "value": " RSS-Feed ",
+    "_base_original": " RSS Feed "
+  },
+  "index:5ba2ded3-9b77-44b3-8afd-d7cb33363ec1:button_text": {
+    "original": " Get Started ",
+    "value": " Loslegen ",
+    "_base_original": " Get Started "
+  },
+  "index:5ba2ded3-9b77-44b3-8afd-d7cb33363ec1:heading": {
+    "original": " Astro Minimal Starter ",
+    "value": " Minimaler Astro-Starter ",
+    "_base_original": " Astro Minimal Starter "
+  },
+  "index:5ba2ded3-9b77-44b3-8afd-d7cb33363ec1:subheading": {
+    "original": "<p>A <strong>minimal</strong> starting point for developers looking to build a website with Astro, using Editable Regions in CloudCannon. Create your own copy, and start creating your own components to use in the Visual Editor.</p>\n<p>Once you've explored this minimal starter, consider  taking a look at the <a href=\"https://github.com/CloudCannon/astro-component-starter\">Astro Component Starter</a> to assist in building out your components.</p>\n",
+    "value": "<p>Ein <strong>minimaler</strong> Ausgangspunkt für Entwickler, die eine Website mit Astro erstellen möchten – mithilfe von Editable Regions in CloudCannon. Erstellen Sie Ihre eigene Kopie und beginnen Sie, eigene Komponenten für den Visual Editor zu erstellen.</p>\n<p>Wenn Sie diesen minimalen Starter erkundet haben, werfen Sie einen Blick auf den <a href=\"https://github.com/CloudCannon/astro-component-starter\">Astro Component Starter</a>, der Ihnen beim Aufbau Ihrer Komponenten hilft.</p>\n",
+    "_base_original": "<p>A <strong>minimal</strong> starting point for developers looking to build a website with Astro, using Editable Regions in CloudCannon. Create your own copy, and start creating your own components to use in the Visual Editor.</p>\n<p>Once you've explored this minimal starter, consider  taking a look at the <a href=\"https://github.com/CloudCannon/astro-component-starter\">Astro Component Starter</a> to assist in building out your components.</p>\n"
+  },
+  "index:84a75749-432f-4596-add5-8ee621dcafc8:button_text": {
+    "original": " CloudCannon Docs ",
+    "value": " CloudCannon-Dokumentation ",
+    "_base_original": " CloudCannon Docs "
+  },
+  "index:84a75749-432f-4596-add5-8ee621dcafc8:heading": {
+    "original": " You choose your editing experience. ",
+    "value": " Sie wählen Ihr Bearbeitungserlebnis. ",
+    "_base_original": " You choose your editing experience. "
+  },
+  "index:84a75749-432f-4596-add5-8ee621dcafc8:text_content": {
+    "original": "<p>A flexible git-backed CMS that specialises in editing markdown and data files.</p>\n<p>Visual editing allows you to preview your changes live before you save them.</p>\n<p>Git-backed means you can keep all your familiar git workflows, while providing an easy-to-understand interface for non-technical editors to collaborate via git.</p>\n",
+    "value": "<p>Ein flexibles, git-basiertes CMS, das auf die Bearbeitung von Markdown- und Datendateien spezialisiert ist.</p>\n<p>Die visuelle Bearbeitung ermöglicht es Ihnen, Ihre Änderungen live in der Vorschau zu sehen, bevor Sie sie speichern.</p>\n<p>Git-basiert bedeutet, dass Sie all Ihre gewohnten Git-Workflows beibehalten und gleichzeitig eine leicht verständliche Oberfläche bieten, über die nicht-technische Redakteure per Git zusammenarbeiten können.</p>\n",
+    "_base_original": "<p>A flexible git-backed CMS that specialises in editing markdown and data files.</p>\n<p>Visual editing allows you to preview your changes live before you save them.</p>\n<p>Git-backed means you can keep all your familiar git workflows, while providing an easy-to-understand interface for non-technical editors to collaborate via git.</p>\n"
+  },
+  "index:b95193c2-e989-4741-a5a2-92c1d748aa44:heading": {
+    "original": " Keep what you need. Delete the rest. ",
+    "value": " Behalten Sie, was Sie brauchen. Löschen Sie den Rest. ",
+    "_base_original": " Keep what you need. Delete the rest. "
+  },
+  "index:b95193c2-e989-4741-a5a2-92c1d748aa44:text_content": {
+    "original": "<p>This starter aims to get developers building their own site quickly in CloudCannon. It strikes a balance between minimal boilerplate and useful features out of the box:</p>\n<ul>\n<li>Tailwind CSS v4</li>\n<li>Blog with pagination &amp; tags</li>\n<li>Visual editing with Editable Regions</li>\n<li>Header and Footer controls</li>\n<li>Create and delete pages</li>\n<li>SEO controls</li>\n</ul>\n",
+    "value": "<p>Dieser Starter soll Entwicklern helfen, ihre eigene Website schnell in CloudCannon zu erstellen. Er findet die Balance zwischen minimalem Boilerplate-Code und nützlichen Funktionen von Haus aus:</p>\n<ul>\n<li>Tailwind CSS v4</li>\n<li>Blog mit Paginierung &amp; Tags</li>\n<li>Visuelle Bearbeitung mit Editable Regions</li>\n<li>Steuerung von Kopf- und Fußzeile</li>\n<li>Seiten erstellen und löschen</li>\n<li>SEO-Steuerung</li>\n</ul>\n",
+    "_base_original": "<p>This starter aims to get developers building their own site quickly in CloudCannon. It strikes a balance between minimal boilerplate and useful features out of the box:</p>\n<ul>\n<li>Tailwind CSS v4</li>\n<li>Blog with pagination &amp; tags</li>\n<li>Visual editing with Editable Regions</li>\n<li>Header and Footer controls</li>\n<li>Create and delete pages</li>\n<li>SEO controls</li>\n</ul>\n"
+  },
+  "nav:about": {
+    "original": " About ",
+    "value": " Über uns ",
+    "_base_original": " About "
+  },
+  "nav:blog": {
+    "original": " Blog ",
+    "value": " Blog ",
+    "_base_original": " Blog "
+  }
+}

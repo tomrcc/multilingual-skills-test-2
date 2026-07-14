@@ -4,6 +4,7 @@ import { Picture } from "astro:assets";
 import Markdown from "../../utility/markdown.astro";
 
 interface Props {
+  _uuid?: string;
   heading: string;
   subheading: string;
   image: {
@@ -16,7 +17,7 @@ interface Props {
   };
 }
 
-const { heading, subheading, image, button } = Astro.props;
+const { _uuid, heading, subheading, image, button } = Astro.props;
 
 const allImages = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/**/*.{jpeg,jpg,png,gif,svg,webp,avif}",
@@ -25,25 +26,26 @@ const allImages = import.meta.glob<{ default: ImageMetadata }>(
 const imageSrc = allImages[image.image_path]?.default ?? image.image_path;
 ---
 
-<section class="py-16 md:py-24">
+<section class="py-16 md:py-24" data-rosey-ns={_uuid}>
   <div
     class="mx-auto max-w-6xl px-8 flex flex-col md:flex-row items-center gap-8">
     <div class="flex-1 flex flex-col gap-4">
       <h1
         data-editable="text"
         data-prop="heading"
+        data-rosey="heading"
         class="text-3xl md:text-5xl font-bold leading-tight text-balance">
         {heading}
       </h1>
       <div class="text-lg text-gray-600 max-w-prose">
-        <Markdown content={subheading} dataProp="subheading" dataType="block" />
+        <Markdown content={subheading} dataProp="subheading" dataType="block" dataRosey="subheading" />
       </div>
       {
         button?.link && (
           <a
             href={button.link}
             class="mt-2 inline-block w-fit rounded-lg bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-700 transition-colors">
-            <span data-editable="text" data-prop="button.text">
+            <span data-editable="text" data-prop="button.text" data-rosey="button_text">
               {button.text}
             </span>
           </a>

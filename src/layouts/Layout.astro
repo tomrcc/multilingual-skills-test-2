@@ -19,10 +19,17 @@ export interface SEOProps {
 export interface Props {
   title: string;
   seo?: SEOProps;
+  roseyRoot?: string;
 }
 
-const { seo, title } = Astro.props;
+const { seo, title, roseyRoot } = Astro.props;
 const baseUrl = Astro.site?.toString() ?? "";
+
+// Rosey namespace root for this page. Split-by-directory locale pages pass an
+// explicit `roseyRoot` (English-equivalent path) so their keys align with the
+// base-language keys; everything else derives it from the URL.
+const roseyRootValue =
+  roseyRoot ?? (Astro.url.pathname.replace(/^\/|\/$/g, "") || "index");
 
 let pageTitle = "";
 if (!title) {
@@ -70,17 +77,20 @@ const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
       }}
     />
   </head>
-  <body class="flex flex-col min-h-screen">
-    <Header />
-    <main class="flex-1">
-      <slot />
-    </main>
-    <Footer />
+  <body>
+    <div data-rcc class="flex flex-col min-h-screen">
+      <Header />
+      <main class="flex-1" data-rosey-root={roseyRootValue}>
+        <slot />
+      </main>
+      <Footer />
+    </div>
     <script>
       if (window.inEditorMode) {
         import("../scripts/register-components.ts").catch((error) => {
           console.warn("Failed to load CloudCannon component registration:", error);
         });
+        import("rosey-cloudcannon-connector");
       }
     </script>
   </body>

@@ -13,6 +13,7 @@ seo:
   no_index: false
 hero_block:
   _name: Hero
+  _uuid: 5ba2ded3-9b77-44b3-8afd-d7cb33363ec1
   heading: Astro Minimal Starter
   subheading: >-
     A **minimal** starting point for developers looking to build a website with
@@ -32,6 +33,7 @@ hero_block:
     link: https://github.com/CloudCannon/astro-starter/
 content_blocks:
   - _name: LeftRight
+    _uuid: b95193c2-e989-4741-a5a2-92c1d748aa44
     heading: Keep what you need. Delete the rest.
     text_content: >-
       This starter aims to get developers building their own site quickly in
@@ -56,6 +58,7 @@ content_blocks:
     flipped: true
     button: {}
   - _name: LeftRight
+    _uuid: 84a75749-432f-4596-add5-8ee621dcafc8
     heading: You choose your editing experience.
     text_content: >-
       A flexible git-backed CMS that specialises in editing markdown and data

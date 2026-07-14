@@ -1,0 +1,30 @@
+---
+import PostLayout from "../../../layouts/Post.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import { localeCodes, blogCollectionName } from "../../../lib/i18n";
+
+export async function getStaticPaths() {
+  const paths = [];
+  for (const locale of localeCodes) {
+    const posts = await getCollection(blogCollectionName(locale) as any);
+    for (const post of posts) {
+      paths.push({ params: { locale, slug: post.id }, props: { locale } });
+    }
+  }
+  return paths;
+}
+
+const { locale, slug } = Astro.params;
+if (!slug) {
+  throw new Error("Post slug is undefined");
+}
+const post = await getEntry(blogCollectionName(locale) as any, slug);
+if (!post) {
+  throw new Error(`Failed to get ${locale} post with slug: ${slug}`);
+}
+const { Content } = await render(post);
+---
+
+<PostLayout frontmatter={post.data} body={post.body} locale={locale}>
+  <Content />
+</PostLayout>

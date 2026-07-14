@@ -1,6 +1,9 @@
 # build output
 dist/
 
+# Rosey's transient untranslated build (created during postbuild)
+_untranslated_site/
+
 # generated types
 .astro/
 
